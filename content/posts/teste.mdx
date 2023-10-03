@@ -25,7 +25,6 @@ Gerenciamento de dependências: O Helm permite que as dependências dos aplicati
 O Helm é uma ferramenta de código aberto, mantida pela comunidade e hospedada no GitHub. Ele é amplamente utilizado no ecossistema Kubernetes e possui uma grande comunidade de usuários e desenvolvedores.
 
 Aqui estão alguns dos principais comandos do Helm que podem ser usados para debug:
-
 <pre>
 ```bash
 helm install --dry-run --debug
@@ -34,24 +33,39 @@ helm install --dry-run --debug
 
 
 Esse comando executa uma simulação da instalação do chart, exibindo informações detalhadas do processo de instalação, como os valores de configuração, recursos do Kubernetes que serão criados e outras informações relevantes. Ele é útil para verificar se as configurações estão corretas antes de fazer a instalação real.
-
+<pre>
+```bash
 helm lint
+```
+</pre>
 
 Esse comando executa uma verificação estática no chart para garantir que ele esteja formatado corretamente e siga as melhores práticas do Helm. Ele verifica se o chart tem arquivos obrigatórios, se os valores estão definidos corretamente e se a sintaxe está correta.
-
+<pre>
+```bash
 helm get manifest <release-name>
+```
+</pre>
 
 Esse comando exibe o manifesto Kubernetes que foi gerado para um determinado release do Helm. Isso permite que você visualize o que será criado no Kubernetes antes de fazer a instalação real.
-
+<pre>
+```bash
 helm get values <release-name>
+```
+</pre>
 
 Esse comando exibe os valores de configuração que foram definidos para um determinado release do Helm. Isso é útil para verificar se os valores foram definidos corretamente antes da instalação.
-
+<pre>
+```bash
 helm rollback <release-name> <revision-number>
+```
+</pre>
 
 Esse comando faz o rollback para uma versão anterior do release do Helm. Ele é útil para reverter uma atualização que pode ter causado problemas no ambiente Kubernetes.
-
+<pre>
+```bash
 helm delete --purge <release-name>
+```
+</pre>
 
 Esse comando remove um release do Helm e todos os seus recursos associados do cluster Kubernetes. É útil para limpar um ambiente que não está sendo mais utilizado.
 

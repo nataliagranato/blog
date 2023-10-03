@@ -1,0 +1,58 @@
+---
+title: O que é o Helm
+author: Natália Granato
+date: 2023-10-02
+---
+
+# O que é o Helm?
+
+
+O Helm é um gerenciador de pacotes para Kubernetes, que facilita a instalação e o gerenciamento de aplicativos em clusters do Kubernetes. Ele é usado para empacotar, distribuir e instalar aplicativos, bem como para gerenciar suas dependências.
+
+O Helm funciona usando um modelo de pacote, onde os aplicativos são empacotados em arquivos chamados “charts”. Esses charts são compostos de um conjunto de arquivos YAML que definem os recursos do Kubernetes que serão implantados e configurados no cluster.
+
+O Helm também inclui um sistema de gerenciamento de repositórios, onde os charts podem ser armazenados e compartilhados entre diferentes usuários e equipes. Isso permite que as equipes de desenvolvimento e operações compartilhem seus aplicativos com outras equipes e simplifiquem a implantação e a gestão de aplicativos em clusters Kubernetes.
+
+Alguns dos recursos mais importantes do Helm são:
+Gerenciamento de dependências: O Helm permite que as dependências dos aplicativos sejam gerenciadas automaticamente, facilitando a implantação de aplicativos complexos que precisam de vários componentes diferentes.
+
+**Rollbacks**: O Helm permite reverter rapidamente as alterações feitas em um aplicativo, em caso de problemas ou erros.
+
+**Templates:** O Helm permite que os arquivos YAML sejam configurados dinamicamente, usando variáveis de modelo. Isso torna a implantação de aplicativos mais flexível e fácil de personalizar.
+
+**Valores de configuração:** O Helm permite que os valores de configuração sejam definidos separadamente dos arquivos YAML do chart. Isso simplifica o gerenciamento de configurações em diferentes ambientes.
+
+O Helm é uma ferramenta de código aberto, mantida pela comunidade e hospedada no GitHub. Ele é amplamente utilizado no ecossistema Kubernetes e possui uma grande comunidade de usuários e desenvolvedores.
+
+Aqui estão alguns dos principais comandos do Helm que podem ser usados para debug:
+
+<pre>
+```bash
+helm install --dry-run --debug
+```
+</pre>
+
+
+Esse comando executa uma simulação da instalação do chart, exibindo informações detalhadas do processo de instalação, como os valores de configuração, recursos do Kubernetes que serão criados e outras informações relevantes. Ele é útil para verificar se as configurações estão corretas antes de fazer a instalação real.
+
+helm lint
+
+Esse comando executa uma verificação estática no chart para garantir que ele esteja formatado corretamente e siga as melhores práticas do Helm. Ele verifica se o chart tem arquivos obrigatórios, se os valores estão definidos corretamente e se a sintaxe está correta.
+
+helm get manifest <release-name>
+
+Esse comando exibe o manifesto Kubernetes que foi gerado para um determinado release do Helm. Isso permite que você visualize o que será criado no Kubernetes antes de fazer a instalação real.
+
+helm get values <release-name>
+
+Esse comando exibe os valores de configuração que foram definidos para um determinado release do Helm. Isso é útil para verificar se os valores foram definidos corretamente antes da instalação.
+
+helm rollback <release-name> <revision-number>
+
+Esse comando faz o rollback para uma versão anterior do release do Helm. Ele é útil para reverter uma atualização que pode ter causado problemas no ambiente Kubernetes.
+
+helm delete --purge <release-name>
+
+Esse comando remove um release do Helm e todos os seus recursos associados do cluster Kubernetes. É útil para limpar um ambiente que não está sendo mais utilizado.
+
+Esses são apenas alguns dos principais comandos do Helm para debug. Existem outros comandos e opções disponíveis que podem ser úteis para diferentes cenários de debug. Consulte a documentação oficial do Helm para obter mais informações.

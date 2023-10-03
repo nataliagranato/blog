@@ -1,0 +1,80 @@
+---
+title: Criando um cluster com o Kind
+description: Está iniciando os seus estudos com Kubernetes e precisa de um ambiente de testes? Utilize o kubernetes in docker, o Kind.
+date: 2023-10-02
+---
+
+Se você está iniciando agora os seus estudos sobre Kubernetes é importante ter um cluster para se familiarizar_ com os componentes, comandos e etc. Existem muitas plataformas que oferecem clusters kubernetes para experimentar, entre elas o minikube, k3s, microk8s e etc, não recomendadas para produção. Para isso você pode ir com GKE (Google Cloud), EKS (AWS).
+
+Existem plataformas como o Play with Kubernetes que oferecem ambientes temporários, com isso você pode perder o seu aprendizado e objetos deployados no playground. Nos provedores de nuvem temos que desembolsar um valor considerável para ter um cluster, por isso o KinD - Kubernetes em Docker é uma boa alternativa pra quem está iniciando agora sua jornada e necessita de um ambiente de desenvolvimento e testes.
+
+**Siga os passos abaixo para ter um cluster pra chamar de seu:**
+
+1. Instale o Docker: Este exemplo baixa o script de https://get.docker.com/ e o executa para instalar a versão estável mais recente do Docker no Linux:
+<pre>
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+</pre>
+
+Você pode acessar a documentação oficial para verificar como instalar em outros sistemas operacionais.
+
+**2. Instale o Kubectl: ** A instalação do kubectl em sua máquina permitirá que você acesse o cluster que iremos criar e outros no futuro.
+<pre>
+```bash
+sudo apt-get update
+sudo apt-get install -y kubectl
+```
+</pre>
+O Kubectl também está disponível para macos e windows, clique aqui.
+
+**3. Instale o KinD: **
+<pre>
+```bash
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
+chmod +x ./kind
+mv ./kind /usr/local/bin/kind
+```
+</pre>
+
+4. Criando um cluster: Agora temos o necessário para criar o nosso cluster, se você executar o comando:
+<pre>
+```bash
+kind create cluster
+```
+</pre>
+
+Ele irá criar um cluster com as configurações padrões, mas a partir de um arquivo de configuração podemos informar quantos nós desejamos.
+
+4.1. Criando um arquivo de configuração do KinD: A documentação oficial fornece um exemplo, acessível clicando aqui.
+<pre>
+```bash
+cat > kind-config.yaml <<EOF
+# um cluster com 3 nós control plane e 3 workers
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: control-plane
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker
+EOF
+```
+</pre>
+4.2 Criando o nosso cluster:
+<pre>
+```bash
+kind create cluster --name k8s-playground --config kind-config.yaml
+```
+</pre>
+Agora o cluster está pronto e você pode usar comandos kubectl para trabalhar no cluster.
+
+5. Deletando um cluster:
+<pre>
+```bash
+kind delete cluster --name k8s-playground
+```
+</pre>
